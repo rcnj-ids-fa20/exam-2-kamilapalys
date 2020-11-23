@@ -1,0 +1,74 @@
+---
+title: "DATA 101 Exam 2"
+author: "[ENTER NAME HERE]"
+date: "Due: Sunday, 11/29 at 11:59pm"
+output: pdf_document
+---
+
+## Academic Honesty Statement (fill in your name)
+
+I, ____________, hereby affirm that I have not communicated with or gained information in any way from my classmates or anyone other than the Professor during this exam, that I have not assisted anyone else with this exam, and that all work is my own.
+
+## Load packages and data
+
+```{r load-packages, message=FALSE}
+# load required packages here
+```
+
+```{r read-data, message=FALSE}
+# read in the data here
+```
+
+## Questions 
+
+### Question 1
+
+[Enter code and/or narrative here.]
+
+### Question 2
+
+[Enter code and/or narrative here.]
+
+### Question 3
+
+[Enter code and/or narrative here.]
+
+### Question 4
+
+[Enter code and/or narrative here.]
+
+### Question 5
+
+[Enter code and/or narrative here.]
+
+### Question 6
+
+[Enter code and/or narrative here.]
+
+### Question 7
+
+[Enter code and/or narrative here.]
+
+### Question 8
+
+[Enter code and/or narrative here.]
+
+### Question 9
+
+[Enter code and/or narrative here.]
+
+### Question 10
+
+[Enter code and/or narrative here.]
+
+### Question 11
+
+[Enter code and/or narrative here.]
+
+### Question 12
+
+[Enter code and/or narrative here.]
+
+### Question 13
+
+[Enter code and/or narrative here.]
