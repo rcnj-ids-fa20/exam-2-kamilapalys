@@ -1,29 +1,60 @@
 ---
 title: "DATA 101 Exam 2"
-author: "[ENTER NAME HERE]"
+author: "Kamila Palys"
 date: "Due: Sunday, 11/29 at 11:59pm"
 output: pdf_document
 ---
 
 ## Academic Honesty Statement (fill in your name)
 
-I, ____________, hereby affirm that I have not communicated with or gained information in any way from my classmates or anyone other than the Professor during this exam, that I have not assisted anyone else with this exam, and that all work is my own.
+I, Kamila Palys, hereby affirm that I have not communicated with or gained information in any way from my classmates or anyone other than the Professor during this exam, that I have not assisted anyone else with this exam, and that all work is my own.
 
 ## Load packages and data
 
 ```{r load-packages, message=FALSE}
 # load required packages here
+library(tidyverse)
+library(tidymodels)
+library(janitor)
+library(lubridate)
+library(NHANES)
 ```
 
 ```{r read-data, message=FALSE}
 # read in the data here
+nhanes <- NHANES %>%
+  janitor::clean_names()
 ```
 
 ## Questions 
 
 ### Question 1
 
-[Enter code and/or narrative here.]
+Here we will show the relationship between the height and body mass index of a person using a scatterplot. 
+
+```{r bmi vs height}
+ggplot(data = nhanes, mapping = aes(x = height, y = bmi)) +
+  geom_point(alpha = 0.2) + 
+  labs(x = "Height in cm", 
+       y = "Body Mass Index (BMI)", 
+       title = "Relationship Between Height and Body Mass Index") +
+  theme_minimal()
+```
+
+From this display, a slight upwards trend is seen. For heights of less than 150cm, not much of a slope is visible and body mass index stays relatively the same for various heights under 150cm. For heights above that amount, there are many more people whose body mass indexes are higher and there is a far greater range of them. In fact, most of the body mass indexes are higher than for people shorter than 150cm. One reason as to why this may be the case is because those shorter than 150cm are usually young children, whose parents have the main say in their diets. When the children grow up and therefore also get taller, they make more of their own decisions when it comes to their diet, which may not be good for their health and BMI. 
+
+Now we will show the relationship between the weight and body mass index of a person, also using a scatterplot. 
+
+```{r bmi vs weight}
+ggplot(data = nhanes, mapping = aes(x = weight, y = bmi)) +
+  geom_point(alpha = 0.15) + 
+  labs(x = "Weight (kg)", 
+       y = "Body Mass Index (BMI)", 
+       title = "Relationship Between Weight and Body Mass Index") + 
+  theme_minimal()
+```
+
+Here, there is almost a perfectly linear positive slope between a person's weight and their body mass index. The positive relationship makes sense because as the weight of a person goes up, given a height, their body mass index will go up as well. Even though height is not a factor shown on this graph, it often increases along with weight, which may lead to little to no change in body mass index. However, weight can fluctuate a lot more and throughout a person's entire life, which is why this upward trend is seen, suggesting that a higher weight still generally leads to a higher body mass index. 
 
 ### Question 2
 
