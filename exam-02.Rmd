@@ -58,7 +58,16 @@ Here, there is almost a perfectly linear positive slope between a person's weigh
 
 ### Question 2
 
-[Enter code and/or narrative here.]
+Now, a linear model will be created to predict bmi as a function of weight.  
+
+```{r linear model}
+bmi_fit <- lm(bmi ~ weight, data = nhanes)
+tidy(bmi_fit)
+```
+
+$\hat{bmi} = 9.09 + 0.24weight$
+
+The coefficient of weight in this equation is 0.24, rounded to the hundredths, meaning that for every additional kilogram of weight, a person's bmi is expected to go up by approximately 0.24. 
 
 ### Question 3
 
