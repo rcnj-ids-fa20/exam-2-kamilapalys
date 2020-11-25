@@ -81,7 +81,20 @@ The coefficient of determination being approximately 0.81 tells us that 81% of t
 
 ### Question 4
 
-[Enter code and/or narrative here.]
+A residual plot will now be created to represent the linear model. 
+
+```{r}
+augment(bmi_fit) %>%
+  ggplot(mapping = aes(x = .fitted, y = .resid)) + 
+  geom_point(alpha = 0.15) + 
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(x = "Predicted BMI", 
+       y = "Residuals", 
+       title = "Residual Plot for the bmi_fit Model") + 
+  theme_minimal()
+```
+
+Looking at this residual plot, it can be concluded that the linear model is not a great fit for the data. The residuals spanning across the plot are inconsistent in their range and shape, and it is known that seeing any patterns on a residual plot is a sign that the model is not a great fit. 
 
 ### Question 5
 
