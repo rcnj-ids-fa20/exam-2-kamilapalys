@@ -102,6 +102,7 @@ A new linear model will be created to predict systolic blood pressure as a funct
 
 ```{r lm mult variables}
 bp_fit <- lm(bp_sys_ave ~ weight + age + gender, data = nhanes)
+
 tidy(bp_fit)
 ```
 
@@ -119,7 +120,17 @@ With the code used after creating a new dataframe with the desire values, the pr
 
 ### Question 6
 
-[Enter code and/or narrative here.]
+Now a logistic model will be created to predict whether or not a patient has diabetes as a function of the patient's age, gender, and BMI. 
+
+```{r log model}
+diabetes_fit <- logistic_reg() %>%
+  set_engine("glm") %>%
+  fit(diabetes ~ age + gender + bmi, data = nhanes, family = "binomial")
+
+tidy(diabetes_fit)
+```
+
+This model's equation is: $\hat{diabetes} = -8.38 + 0.058age + 0.365gendermale + 0.097bmi$
 
 ### Question 7
 
