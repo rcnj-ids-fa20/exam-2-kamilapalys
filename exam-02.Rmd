@@ -146,7 +146,14 @@ This function could be useful if we wanted to find the probability of an event o
 
 ### Question 8
 
-[Enter code and/or narrative here.]
+We will now make use of the logistic regression model, its answer, and the inverse-logit to obtain the predicted probability of a 55-year old woman who has a BMI of 24 of having diabetes.
+
+`r -8.38 + 0.058 * 55 + 0.365*0 + 0.097 * 24`
+```{r}
+inv_logit(-2.862)
+```
+
+The predicted probability of this patient having diabetes is approximately 0.054, or about 5.4% chance. This is a very small probability of this woman having diabetes, which is not entirely surprising because a BMI of 24 is not a very high one, and we might assume that people with a higher BMI have a higher chance of having diabetes. If we were to classify this result, we would classify the patient as not having diabetes.
 
 ### Question 9
 
