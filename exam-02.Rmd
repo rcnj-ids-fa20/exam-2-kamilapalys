@@ -130,11 +130,19 @@ diabetes_fit <- logistic_reg() %>%
 tidy(diabetes_fit)
 ```
 
-This model's equation is: $\hat{diabetes} = -8.38 + 0.058age + 0.365gendermale + 0.097bmi$
+This model's equation is: $\log(p/(1-p)) = -8.38 + 0.058age + 0.365gendermale + 0.097bmi$
 
 ### Question 7
 
-[Enter code and/or narrative here.]
+Here a function will be written that outputs the inverse-logit of a number x. 
+
+```{r}
+inv_logit <- function(x) {
+  exp(x)/(1 + exp(x))
+}
+```
+
+This function could be useful if we wanted to find the probability of an event occurring, such as the probability of a patient having diabetes as a result of different factors from the logistic model from Question 6. In this case, we after substituting the conditions we wanted to test for, meaning a certain age, gender, and BMI, the result of that model would be substituted for the x in the inverse-logit to find the probability of the patient having diabetes. 
 
 ### Question 8
 
