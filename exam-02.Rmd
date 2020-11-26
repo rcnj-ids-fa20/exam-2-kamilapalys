@@ -73,7 +73,7 @@ The coefficient of weight in this equation is 0.24, rounded to the hundredths, m
 
 Now the coefficient of determination, or R-Squared, will be calculated.
 
-```{r}
+```{r r squared}
 glance(bmi_fit)$r.squared
 ```
 
@@ -83,7 +83,7 @@ The coefficient of determination being approximately 0.81 tells us that 81% of t
 
 A residual plot will now be created to represent the linear model. 
 
-```{r}
+```{r resid plot}
 augment(bmi_fit) %>%
   ggplot(mapping = aes(x = .fitted, y = .resid)) + 
   geom_point(alpha = 0.15) + 
@@ -98,7 +98,24 @@ Looking at this residual plot, it can be concluded that the linear model is not 
 
 ### Question 5
 
-[Enter code and/or narrative here.]
+A new linear model will be created to predict systolic blood pressure as a function of weight, age, and gender of a person. 
+
+```{r lm mult variables}
+bp_fit <- lm(bp_sys_ave ~ weight + age + gender, data = nhanes)
+tidy(bp_fit)
+```
+
+The model equation for males: $\hat{bp} = 92.3 + 0.094weight + 0.414age + 3.20(1)$
+The model equation for females: $\hat{bp} = 92.3 + 0.094weight + 0.414age + 3.20(0)$
+
+As seen, the model equations for males and females differs only in that for the males, a 1 is substituted for the gender variable, meaning males here had a 3.20 higher systolic blood pressure on average than females. 
+
+```{r predict}
+predictbp <- tibble(age = 60, gender = "male", weight = 91)
+predict(bp_fit, newdata = predictbp)
+```
+
+With the code used after creating a new dataframe with the desire values, the predicted systolic blood pressure of a 60-year old man weighing 200 pounds, or 91 kilograms, shows to be approximately 128.86 mm Hg. 
 
 ### Question 6
 
