@@ -111,7 +111,7 @@ The model equation for females: $\hat{bp} = 92.3 + 0.094weight + 0.414age + 3.20
 
 As seen, the model equations for males and females differs only in that for the males, a 1 is substituted for the gender variable, meaning males here had a 3.20 higher systolic blood pressure on average than females. 
 
-```{r predict}
+```{r predict bp}
 predictbp <- tibble(age = 60, gender = "male", weight = 91)
 predict(bp_fit, newdata = predictbp)
 ```
@@ -136,7 +136,7 @@ This model's equation is: $\log(p/(1-p)) = -8.38 + 0.058age + 0.365gendermale + 
 
 Here a function will be written that outputs the inverse-logit of a number x. 
 
-```{r}
+```{r inverse function}
 inv_logit <- function(x) {
   exp(x)/(1 + exp(x))
 }
@@ -149,7 +149,7 @@ This function could be useful if we wanted to find the probability of an event o
 We will now make use of the logistic regression model, its answer, and the inverse-logit to obtain the predicted probability of a 55-year old woman who has a BMI of 24 of having diabetes.
 
 `r -8.38 + 0.058 * 55 + 0.365*0 + 0.097 * 24`
-```{r}
+```{r predict diabetes}
 inv_logit(-2.862)
 ```
 
@@ -157,7 +157,15 @@ The predicted probability of this patient having diabetes is approximately 0.054
 
 ### Question 9
 
-[Enter code and/or narrative here.]
+Five outputs from the diabetes_fit model will now be mapped to the inv_logit function. 
+
+```{r map}
+outputs <- list(c(-2.20, 0.01, -0.35, 1.15, 0.83))
+
+map(outputs, inv_logit)
+```
+
+The result for the third patient is approximately 0.41, as seen from the mapping results. This means that given the patient's age, gender, and BMI, he or she has a predicted probability of 0.41, or about a 41% chance, of having diabetes. 
 
 ### Question 10
 
