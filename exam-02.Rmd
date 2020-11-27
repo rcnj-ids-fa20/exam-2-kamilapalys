@@ -177,7 +177,7 @@ A site may not allow webscraping of its data if the data on the website is not a
 
 ### Question 12
 
-[Enter code and/or narrative here.]
+This cartoon shows humans defeating robots in a robot uprising because the robots chose to use inferior weapons, such as rocks and spears. This is because the algorithm the robots used to decide their weapons was based on battles that already occurred, and most battles ever fought were hundreds and thousands of years ago when technology was not so advanced. Therefore, the robots made a biased decision based on the data already available, which was hurtful to them. Similarly, the Amazon hiring process that was explained in the video also used an algorithm that rated candidates based on data already available from the past. The amount of male hires was already higher than woman hires in Amazon, so the algorithm used that information to make future decisions as well, which resulted in a biased decision by the algorithm. 
 
 ### Question 13
 
