@@ -169,7 +169,7 @@ The result for the third patient is approximately 0.41, as seen from the mapping
 
 ### Question 10
 
-[Enter code and/or narrative here.]
+In a binary classification situation with a high threshold, there needs to be a high probability of an event occurring for it to be classified as occurring. A high threshold may be desired if there were a situation where a risky drug or vaccine was to be tested on volunteers and there was a model that would predict who would have a high possibility of surviving the drug. A high threshold would be appropriate here because we would not want the model to predict a person to survive if there was only a 0.50 predicted probability of the person surviving, for example. We would only want to test those who have a very high probability of surviving. A low threshold is wanted in situations where we want an event classified as occurring even if there is a relatively small chance of it occurring. Such a situation could be if the government had some sort of model to predict the probability of a person being a terrorist or a suspect in a crime that puts a whole country in danger. Here, even if the model predicts a probability of 0.10 of a person being a terrorist, we would want the government to investigate the person so as to make sure the person does not go free.  
 
 ### Question 11
 
