@@ -173,7 +173,7 @@ In a binary classification situation with a high threshold, there needs to be a 
 
 ### Question 11
 
-[Enter code and/or narrative here.]
+A site may not allow webscraping of its data if the data on the website is not accessible to everyone. If an account is necessary to get access to some data on a website, such as social media, then clearly the website does not want everyone to have access to certain data and would not allow webscraping for privacy reasons. Another scenario when a site may not allow webscraping is when it is a blog of some sort or a personal webpage. In this case, the owner of the website probably would not want their personal information and comments to be scraped for another purpose. 
 
 ### Question 12
 
