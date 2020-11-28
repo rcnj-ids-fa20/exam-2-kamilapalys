@@ -181,4 +181,13 @@ This cartoon shows humans defeating robots in a robot uprising because the robot
 
 ### Question 13
 
-[Enter code and/or narrative here.]
+A different file will now be read in and a few adjustments will be made as far as NA values, variable names and variable data types. 
+
+```{r csv file}
+read_csv(file = "data/people.csv", 
+         na = c("N/A", "Unknown")) %>%
+  janitor::clean_names() %>%
+  mutate(height = factor(height, levels = c("short", "medium", "tall", "very tall")))
+```
+
+Another way to ensure that columns had the appropriate data types would be to force R to consider them as a certain data type, using the col_types = and then listing from left to right the desired column data types. 
