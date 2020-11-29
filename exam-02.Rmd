@@ -35,13 +35,13 @@ Here we will show the relationship between the height and body mass index of a p
 ```{r bmi vs height}
 ggplot(data = nhanes, mapping = aes(x = height, y = bmi)) +
   geom_point(alpha = 0.2) + 
-  labs(x = "Height in cm", 
+  labs(x = "Height (cm)", 
        y = "Body Mass Index (BMI)", 
        title = "Relationship Between Height and Body Mass Index") +
   theme_minimal()
 ```
 
-From this display, a slight upwards trend is seen. For heights of less than 150cm, not much of a slope is visible and body mass index stays relatively the same for various heights under 150cm. For heights above that amount, there are many more people whose body mass indexes are higher and there is a far greater range of them. In fact, most of the body mass indexes are higher than for people shorter than 150cm. One reason as to why this may be the case is because those shorter than 150cm are usually young children, whose parents have the main say in their diets. When the children grow up and therefore also get taller, they make more of their own decisions when it comes to their diet, which may not be good for their health and BMI. 
+From this display, a slight upwards trend is seen. For heights of less than 150cm, not much of a slope is visible and body mass index stays relatively the same for various heights under 150cm. For heights above that amount, there are many more people whose body mass indexes are higher and there is a far greater range of them. In fact, most of the body mass indexes here are higher than for people shorter than 150cm. One reason as to why this may be the case is because those shorter than 150cm are usually young children, whose parents have the main say in their diets. When the children grow up and therefore also get taller, they make more of their own decisions when it comes to their diet, which may not be good for their health and BMI. 
 
 Now we will show the relationship between the weight and body mass index of a person, also using a scatterplot. 
 
@@ -58,7 +58,7 @@ Here, there is almost a perfectly linear positive slope between a person's weigh
 
 ### Question 2
 
-Now, a linear model will be created to predict bmi as a function of weight.  
+Now, a linear model will be created to predict BMI as a function of weight.  
 
 ```{r linear model}
 bmi_fit <- lm(bmi ~ weight, data = nhanes)
@@ -67,17 +67,17 @@ tidy(bmi_fit)
 
 $\hat{bmi} = 9.09 + 0.24weight$
 
-The coefficient of weight in this equation is 0.24, rounded to the hundredths, meaning that for every additional kilogram of weight, a person's bmi is expected to go up by approximately 0.24. 
+The coefficient of weight in this equation is 0.24, rounded to the hundredths, meaning that for every additional kilogram of weight, a person's BMI is expected to go up by approximately 0.24. 
 
 ### Question 3
 
-Now the coefficient of determination, or R-Squared, will be calculated.
+Now the coefficient of determination, or R-Squared, will be calculated for the linear model.
 
 ```{r r squared}
 glance(bmi_fit)$r.squared
 ```
 
-The coefficient of determination being approximately 0.81 tells us that 81% of the variability of the bmi can be explained by the weight from the linear model previously created. This high percentage suggests that the model created is a good fit for the data. 
+The coefficient of determination being approximately 0.81 tells us that 81% of the variability of the BMI can be explained by the weight from the linear model previously created. This high percentage suggests that the model created is a good fit for the data. 
 
 ### Question 4
 
@@ -109,14 +109,14 @@ tidy(bp_fit)
 The model equation for males: $\hat{bp} = 92.3 + 0.094weight + 0.414age + 3.20(1)$
 The model equation for females: $\hat{bp} = 92.3 + 0.094weight + 0.414age + 3.20(0)$
 
-As seen, the model equations for males and females differs only in that for the males, a 1 is substituted for the gender variable, meaning males here had a 3.20 higher systolic blood pressure on average than females. 
+As seen, the model equations for males and females differs only in that for the males, a "1" is substituted for the gender variable, meaning males here had a 3.20 higher systolic blood pressure on average than females. 
 
 ```{r predict bp}
 predictbp <- tibble(age = 60, gender = "male", weight = 91)
 predict(bp_fit, newdata = predictbp)
 ```
 
-With the code used after creating a new dataframe with the desire values, the predicted systolic blood pressure of a 60-year old man weighing 200 pounds, or 91 kilograms, shows to be approximately 128.86 mm Hg. 
+With the code used after creating a new data frame with the desire values, the predicted systolic blood pressure of a 60-year old man weighing 200 pounds, or 91 kilograms, shows to be approximately 128.86 mm Hg. 
 
 ### Question 6
 
@@ -142,13 +142,18 @@ inv_logit <- function(x) {
 }
 ```
 
-This function could be useful if we wanted to find the probability of an event occurring, such as the probability of a patient having diabetes as a result of different factors from the logistic model from Question 6. In this case, we after substituting the conditions we wanted to test for, meaning a certain age, gender, and BMI, the result of that model would be substituted for the x in the inverse-logit to find the probability of the patient having diabetes. 
+This function could be useful if we wanted to find the probability of an event occurring, such as the probability of a patient having diabetes as a result of different factors from the logistic model from Question 6. In this case, after substituting the conditions we wanted to test for, meaning a certain age, gender, and BMI, the result of that model would be substituted for the x in the inverse-logit function to find the probability of the patient having diabetes. 
 
 ### Question 8
 
 We will now make use of the logistic regression model, its answer, and the inverse-logit to obtain the predicted probability of a 55-year old woman who has a BMI of 24 of having diabetes.
 
+Substituting 55 for the age variable, 0 for the gender variable, and 24 for the BMI variable in the logistic regression model gives: 
+
 `r -8.38 + 0.058 * 55 + 0.365*0 + 0.097 * 24`
+
+Now substituting that result into the inverse logit function: 
+
 ```{r predict diabetes}
 inv_logit(-2.862)
 ```
@@ -169,15 +174,15 @@ The result for the third patient is approximately 0.41, as seen from the mapping
 
 ### Question 10
 
-In a binary classification situation with a high threshold, there needs to be a high probability of an event occurring for it to be classified as occurring. A high threshold may be desired if there were a situation where a risky drug or vaccine was to be tested on volunteers and there was a model that would predict who would have a high possibility of surviving the drug. A high threshold would be appropriate here because we would not want the model to predict a person to survive if there was only a 0.50 predicted probability of the person surviving, for example. We would only want to test those who have a very high probability of surviving. A low threshold is wanted in situations where we want an event classified as occurring even if there is a relatively small chance of it occurring. Such a situation could be if the government had some sort of model to predict the probability of a person being a terrorist or a suspect in a crime that puts a whole country in danger. Here, even if the model predicts a probability of 0.10 of a person being a terrorist, we would want the government to investigate the person so as to make sure the person does not go free.  
+In a binary classification situation with a high threshold, there needs to be a high probability of an event occurring for it to be classified as occurring. A high threshold may be desired if there were a situation where a risky drug or vaccine was to be tested on volunteers and there was a model that would predict who would have a high possibility of surviving the drug. A high threshold would be appropriate here because we would not want the model to predict a person to survive if there was only a 0.50 predicted probability of the person surviving, for example. We would only want to test it on those who have a very high probability of surviving. A low threshold is wanted in situations where we want an event classified as occurring even if there is a relatively small chance of it occurring. Such a situation could be if the government had some sort of model to predict the probability of a person being a terrorist or a suspect in a crime that puts a whole country in danger. Here, even if the model predicts a probability of 0.10 of a person being a terrorist, we would want the government to investigate the person so as to make sure the person does not go free.  
 
 ### Question 11
 
-A site may not allow webscraping of its data if the data on the website is not accessible to everyone. If an account is necessary to get access to some data on a website, such as social media, then clearly the website does not want everyone to have access to certain data and would not allow webscraping for privacy reasons. Another scenario when a site may not allow webscraping is when it is a blog of some sort or a personal webpage. In this case, the owner of the website probably would not want their personal information and comments to be scraped for another purpose. 
+A site may not allow webscraping of its data if the data on the website is not accessible to everyone. If an account is necessary to get access to some data on a website, such as social media, then clearly the website does not want everyone to have access to certain data and would not allow webscraping for privacy reasons. Another scenario when a site may not allow webscraping is when it is a blog of some sort or a personal web page. In this case, the owner of the website probably would not want their personal information and comments to be scraped for another purpose. 
 
 ### Question 12
 
-This cartoon shows humans defeating robots in a robot uprising because the robots chose to use inferior weapons, such as rocks and spears. This is because the algorithm the robots used to decide their weapons was based on battles that already occurred, and most battles ever fought were hundreds and thousands of years ago when technology was not so advanced. Therefore, the robots made a biased decision based on the data already available, which was hurtful to them. Similarly, the Amazon hiring process that was explained in the video also used an algorithm that rated candidates based on data already available from the past. The amount of male hires was already higher than woman hires in Amazon, so the algorithm used that information to make future decisions as well, which resulted in a biased decision by the algorithm. 
+This cartoon shows humans defeating robots in a robotic uprising because the robots chose to use inferior weapons, such as rocks and spears. This is because the algorithm the robots used to decide their weapons was based on battles that already occurred, and most battles ever fought were hundreds and thousands of years ago when technology was not so advanced. Therefore, the robots made a biased decision based on the data already available, which was hurtful to them. Similarly, the Amazon hiring process that was explained in the video also used an algorithm that rated candidates based on data already available from the past. The amount of male hires was already higher than woman hires in Amazon, so the algorithm used that information to make future decisions as well, which resulted in a biased decision by the algorithm. 
 
 ### Question 13
 
@@ -187,7 +192,9 @@ A different file will now be read in and a few adjustments will be made as far a
 read_csv(file = "data/people.csv", 
          na = c("N/A", "Unknown")) %>%
   janitor::clean_names() %>%
-  mutate(height = factor(height, levels = c("short", "medium", "tall", "very tall")))
+  mutate(height = fct_relevel(height, levels = c("short", "medium", "tall", 
+                                            "very tall"))) %>%
+  arrange(height)
 ```
 
-Another way to ensure that columns had the appropriate data types would be to force R to consider them as a certain data type, using the col_types = and then listing from left to right the desired column data types. 
+Another way to ensure that columns had the appropriate data types would be to force R to consider them as a certain data type, using the col_types = and then listing from left to right the desired column data types. Code for arranging the factor levels was found [here ](https://community.rstudio.com/t/can-we-specify-the-order-for-factor-character-type-variables-when-using-arrange/3355/2).
